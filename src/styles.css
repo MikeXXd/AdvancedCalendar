@@ -36,13 +36,19 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .header > * {
+  display: flex;
+  align-items: center;
+}
+
+.header * {
   margin-right: 0.5rem;
 }
 
-.header > :last-child {
+.header :last-child {
   margin-right: 0;
 }
 

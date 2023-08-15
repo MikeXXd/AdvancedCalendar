@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Header } from "./components/Header";
 import { Days } from "./components/Days";
 
-export function App() {
+export function Calendar() {
   const [visibleMonth, setVisibleMonth] = useState(new Date());
 
 
