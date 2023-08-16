@@ -12,6 +12,7 @@
   --border-color: #dadce0;
   --border-size: 1px;
   --day-padding: 0.25rem;
+  --blue-about-background: hsl(211, 72%, 54%);
 }
 
 body {
@@ -50,6 +51,11 @@ body {
 
 .header :last-child {
   margin-right: 0;
+}
+
+.info {
+  font-weight: bold;
+  color: #b0b3b7;
 }
 
 .btn {
@@ -362,6 +368,50 @@ body {
 
 .modal-title > small {
   color: #555;
+}
+
+.modal-body-about {
+  max-width: 30rem;
+}
+
+.modal-body-about em {
+  font-weight: 600;
+  color: #777;
+}
+
+.modal-body-about a {
+  color: black;
+  display: inline-flex;
+  text-decoration: none;
+  align-items: center;
+  transition-duration: 250ms;
+  transition-property: text-decoration-color;
+  transition-timing-function: ease-in-out;
+}
+.modal-body-about img {
+  height: 1.8rem;
+  border-radius: 0.2rem;
+  transition-duration: 500ms;
+  transition-property: background;
+  transition-timing-function: ease-in-out;
+}
+
+.modal-body-about img.active {
+  background: var(--blue-about-background);
+  border-radius: 0.2rem;
+}
+
+.modal-body-about a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--blue-about-background);
+}
+
+.display-prompt {
+  display: none;
+}
+
+.display-prompt.active {
+  display: inline-flex;
 }
 
 .form-group {

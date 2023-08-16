@@ -1,4 +1,6 @@
 import { addMonths, format } from "date-fns";
+import { useState } from "react";
+import { ModalAbout } from "./ModalAbout";
 
 interface HeaderProps {
   visibleMonth: Date;
@@ -6,10 +8,14 @@ interface HeaderProps {
 }
 
 export function Header({ visibleMonth, setVisibleMonth }: HeaderProps) {
+  const [isModalAboutOpen, setIsModalAbouitOpen] = useState(false);
+
   function moveMonthsBy(months: number) {
     const newVisibleMonth = addMonths(visibleMonth, months);
     setVisibleMonth(newVisibleMonth);
   }
+
+  console.log(isModalAboutOpen);
 
   return (
     <div className="header">
@@ -27,12 +33,20 @@ export function Header({ visibleMonth, setVisibleMonth }: HeaderProps) {
         </div>
         <span className="month-title">{format(visibleMonth, "MMMM yyyy")}</span>
       </div>
+      <p className="info">
+        &#10088; button "setting" is not working at this moment, the site is
+        under construction &#10089;
+      </p>
       <div>
-        <button onClick={undefined} className="btn">
-          about App
+        <button onClick={() => setIsModalAbouitOpen(true)} className="btn">
+          About App
         </button>
+        <ModalAbout
+          isOpen={isModalAboutOpen}
+          onClose={() => setIsModalAbouitOpen(false)}
+        />
         <button onClick={undefined} className="btn">
-          setting
+          Setting
         </button>
       </div>
     </div>

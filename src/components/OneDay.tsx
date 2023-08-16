@@ -31,7 +31,7 @@ export default function OneDay({
   const [sortedEvents, setSortedEvents] = useState<Event[]>([]);
   const [eventsFieldHeight, setEventsFieldHeight] = useState<number | null>(null);
   const [visibleEvents, setVisibleEvents] = useState<number | null>(null);
-  const tasksHightRef = useRef<HTMLDivElement>(null);
+  const eventsHightRef = useRef<HTMLDivElement>(null);
 
   useEffect(
     // reordering events array
@@ -83,14 +83,14 @@ export default function OneDay({
       }
     });
 
-    if (tasksHightRef.current) {
-      observer.observe(tasksHightRef.current);
+    if (eventsHightRef.current) {
+      observer.observe(eventsHightRef.current);
     }
 
     return () => {
       observer.disconnect();
     };
-  }, [tasksHightRef, visibleEvents, events.length, eventsFieldHeight]);
+  }, [eventsHightRef, visibleEvents, events.length, eventsFieldHeight]);
 
   // function sortEvents(events: Event[]) {
   //   events.sort((a, b) => {
@@ -155,7 +155,7 @@ export default function OneDay({
             +
           </button>
         </div>
-        <div className="events" ref={tasksHightRef}>
+        <div className="events" ref={eventsHightRef}>
           {sortedEvents
             .slice(0, visibleEvents ? visibleEvents : undefined)
             .map((event) => (
