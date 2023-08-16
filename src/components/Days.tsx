@@ -20,8 +20,6 @@ export function Days({ visibleMonth }: DaysProps) {
     end: endOfWeek(endOfMonth(visibleMonth)),
   })}, [visibleMonth]); 
 
-  console.log("Days rendered again")
-
   return (
     <div className="days">
       {days.map((day, index) => (

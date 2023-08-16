@@ -1,6 +1,7 @@
 import { addMonths, format } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalAbout } from "./ModalAbout";
+import { vi } from "date-fns/locale";
 
 interface HeaderProps {
   visibleMonth: Date;
@@ -15,7 +16,25 @@ export function Header({ visibleMonth, setVisibleMonth }: HeaderProps) {
     setVisibleMonth(newVisibleMonth);
   }
 
-  console.log(isModalAboutOpen);
+  useEffect(() => {
+    //changing months and years on keyboard
+    const keyAction = (e: KeyboardEvent) => {
+      if (!e.ctrlKey && e.key === "ArrowLeft") {
+        moveMonthsBy(-1);
+      } else if (!e.ctrlKey && e.key === "ArrowRight") {
+        moveMonthsBy(1);
+      } else if (e.key === "Enter") {
+        setVisibleMonth(new Date());
+      } else if (e.ctrlKey && e.key === "ArrowLeft") {
+        moveMonthsBy(-12);
+      } else if (e.ctrlKey && e.key === "ArrowRight") {
+        moveMonthsBy(12);
+      } else return;
+    };
+    document.addEventListener("keydown", keyAction);
+
+    return () => document.removeEventListener("keydown", keyAction);
+  }, [visibleMonth]);
 
   return (
     <div className="header">
