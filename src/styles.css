@@ -153,6 +153,7 @@ body {
 
 .day {
   background-color: white;
+  font-weight: 700;
   padding: var(--day-padding);
   overflow: hidden;
   display: flex;
@@ -162,6 +163,10 @@ body {
 .non-month-day {
   opacity: 0.75;
 }
+.old-month-day {
+  font-weight: 400;
+}
+
 
 .old-month-day .events,
 .old-month-day .day-header {

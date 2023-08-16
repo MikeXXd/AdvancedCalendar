@@ -1,4 +1,4 @@
-import { format, isSameDay, isSameMonth } from "date-fns";
+import { endOfDay, format, isBefore, isSameDay, isSameMonth } from "date-fns";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Event } from "../types";
 import OneEvent from "./OneEvent";
@@ -75,7 +75,6 @@ export default function OneDay({
           entries[0].contentRect.height /
           parseFloat(getComputedStyle(document.documentElement).fontSize);
         setEventsFieldHeight(parseFloat(tasksFieldHeightInRemUnits.toFixed(2)));
-        // const viewMoreBtnHeight = events.length - (visibleEvents ?? 0) === 1 ? 0.5 : 0
         const quantityOfVisibleTasks = Math.floor(
           tasksFieldHeightInRemUnits / ONE_TASK_HEIGHT
         ); // in rem units
@@ -136,8 +135,7 @@ export default function OneDay({
     <>
       <div
         className={`day ${!isSameMonth(day, visibleMonth) && "non-month-day"} ${
-          !isSameMonth(day, visibleMonth) &&
-          day.getDate() > 20 &&
+          isBefore(endOfDay(day), new Date()) &&
           "old-month-day"
         }`}
       >
