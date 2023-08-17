@@ -1,7 +1,6 @@
 import { addMonths, format } from "date-fns";
 import { useEffect, useState } from "react";
 import { ModalAbout } from "./ModalAbout";
-import { vi } from "date-fns/locale";
 
 interface HeaderProps {
   visibleMonth: Date;
